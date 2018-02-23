@@ -1,0 +1,21 @@
+---
+- name: Partition disk for nfs
+  parted:
+    device: /dev/xvdb
+    number: 1
+    state: present
+  become: true
+
+- name: Create filesystem 
+  filesystem:
+    fstype: xfs
+    dev: /dev/xvdb1
+  become: true
+
+- name: Mount /exports
+  mount:
+    path: /exports
+    src: /dev/xvdb1
+    fstype: xfs
+    state: mounted
+  become: true

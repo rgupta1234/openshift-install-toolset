@@ -1,0 +1,43 @@
+---
+- name: Force unregister before register
+  redhat_subscription:
+    state: absent
+  ignore_errors: true
+  become: true
+
+- name: Register VM
+  redhat_subscription:
+    state: present
+    username: "{{rhsm_username}}"
+    password: "{{rhsm_password}}"
+    autosubscribe: false
+  register: result
+  until: result | succeeded
+  retries: 10
+  delay: 5      
+  become: true
+
+- name: Subscribe to pool
+  shell: /usr/bin/subscription-manager attach --pool={{ rhsm_pool}}
+  register: task_result
+  until: task_result.rc == 0
+  retries: 10
+  delay: 5
+  ignore_errors: no      
+  become: true
+
+- name: Disable Repos
+  shell: 'subscription-manager repos --disable="*"'
+  register: result
+  until: result | succeeded
+  retries: 10
+  delay: 5      
+  become: true
+
+- name: Enable required repos
+  shell: 'subscription-manager repos --enable="rhel-7-server-rpms" --enable="rhel-7-server-extras-rpms" --enable="rhel-7-server-ose-3.7-rpms" --enable="rhel-7-fast-datapath-rpms"'
+  register: result
+  until: result | succeeded
+  retries: 10
+  delay: 5      
+  become: true

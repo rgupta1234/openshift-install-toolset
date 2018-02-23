@@ -1,0 +1,42 @@
+---
+- name: Make sure we have a 'wheel' group
+  group:
+    name: wheel
+    state: present
+  become: true
+
+- name: Allow 'wheel' group to have passwordless sudo
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%wheel'
+    line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'
+  become: true
+
+- name: Add sudoers users to wheel group
+  user: 
+    name: ocpadmin 
+    groups: wheel
+    append: yes 
+    state: present 
+    createhome: yes
+  become: true
+
+- name: Set authorized key took from url
+  authorized_key:
+    user: ocpadmin
+    state: present
+    key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCqMrBEeXoMUV+AXrb0XNyC7O64k12gDtvy/eq92DnF8idVC/Dp5kJKIGZIMHRPooL+UsADGIFORenRVlaz1Q35EcCfsfBMx4GsEbcQHbmPeA9wNwf+VZ7b3HbR9HUxmDyY6MHT0DF4RPtI+xjw7nc326pgVY0S92t+fKd7gRy3SU1eggakvGpuWNq43FKqDQudKGFzkhrPK+Sdy6s9aLf7JODTFjCzRi0qLjJnlU6FVBmwN2me367KqC+im7TsuNzgwdcdY7of9hkGQmFtQ0QwhQX3E8IQt+YPpOkMvQwsDFkK1rhsk5GJiuvQo5aNOPJDH1mXjkRJucz512DhrNyd" 
+  become: true
+
+- name: copy file
+  copy:
+    src: id
+    dest: /home/ec2-user/.ssh/id_rsa
+    owner: ec2-user
+    group: ec2-user
+    mode: 0400
+
+    
+

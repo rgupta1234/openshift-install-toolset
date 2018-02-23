@@ -1,0 +1,33 @@
+---
+- hosts: nodes
+  vars_prompt:
+    - name: "rhsm_username"
+      prompt: "rhsm_username?"
+      private: no
+    - name: "rhsm_password"
+      prompt: "rhsm_password?"
+    - name: "rhsm_pool"
+      prompt: "rhsm_pool?"
+      private: no
+
+  tasks:
+
+  - import_role:
+      name: register-virtual-machines
+    tags:
+    - register
+
+  - import_role:
+      name: openshift-pre-reqs
+    tags:
+    - prereqs 
+  
+  - import_role:
+      name: setup_disks
+    tags:
+     - setupdisks
+
+  - import_role:
+      name: add-users
+    tags:
+     - addusers
