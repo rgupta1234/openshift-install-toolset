@@ -1,16 +1,25 @@
-provider "aws" {
-  region     = "us-east-2"
-}
-
-resource "aws_instance" "bastion" {
-
+resource "aws_instance" "master" {
+  count = "${var.master["count"]}"
   ami           = "${var.ami}"
-  instance_type = "t2.large"
-  key_name 	= "${var.key_name}"
-  security_groups  = ["sandoval-sg"]
+  instance_type = "${var.master["instance_type"]}"
+  key_name = "${var.key_name}"
 
   root_block_device {
-    volume_size = "30"
+    volume_size = "${var.master["root_volume_size"]}"
+    volume_type = "gp2"
+    delete_on_termination = true
+  }
+
+  ebs_block_device {
+    device_name = "/dev/sdb"
+    volume_size = "${var.master["docker_volume_size"]}"
+    volume_type = "gp2"
+    delete_on_termination = true
+  }
+
+  ebs_block_device {
+    device_name = "/dev/sdc"
+    volume_size = "${var.master["nfs_volume_size"]}"
     volume_type = "gp2"
     delete_on_termination = true
   }
@@ -30,34 +39,7 @@ resource "aws_instance" "bastion" {
     private_key = "${file(var.private_key_path)}"
   }
 
-  provisioner "local-exec" {
-    command = "scp -i ${file(var.private_key_path)} ec2-user@${aws_instance.bastion.private_ip}:~"
-  }
-
   tags {
-    Name = "rs-bastion"
+    Name = "workshop-master-${count.index + 1}"
   }
-
- /* 
-  provisioner "local-exec" {
-    command = ""
-  }
-*/
-
-} 
-
-
-
-/*
-data "aws_route53_zone" "selected" {
-  name         = "rs.osecloud.com."
 }
-
-resource "aws_route53_record" "bastian" {
-  zone_id = "${data.aws_route53_zone.selected.zone_id}"
-  name    = "bastion.${data.aws_route53_zone.selected.name}"
-  type    = "A"
-  ttl     = "300"
-  records = ["${aws_instance.bastion.public_ip}"]
-}
-*/

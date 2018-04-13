@@ -1,16 +1,12 @@
-provider "aws" {
-  region     = "us-east-2"
-}
+resource "aws_instance" "nfs" {
+  count = "${var.create_nfs}"
+  ami           = "ami-0b1e356e"
+  instance_type = "m4.large"
+  key_name = "${var.key_name}"
 
-resource "aws_instance" "bastion" {
-
-  ami           = "${var.ami}"
-  instance_type = "t2.large"
-  key_name 	= "${var.key_name}"
-  security_groups  = ["sandoval-sg"]
-
-  root_block_device {
-    volume_size = "30"
+  ebs_block_device {
+    device_name = "/dev/sdb"
+    volume_size = 250
     volume_type = "gp2"
     delete_on_termination = true
   }
@@ -30,34 +26,7 @@ resource "aws_instance" "bastion" {
     private_key = "${file(var.private_key_path)}"
   }
 
-  provisioner "local-exec" {
-    command = "scp -i ${file(var.private_key_path)} ec2-user@${aws_instance.bastion.private_ip}:~"
-  }
-
   tags {
-    Name = "rs-bastion"
+    Name = "workshop-nfs"
   }
-
- /* 
-  provisioner "local-exec" {
-    command = ""
-  }
-*/
-
-} 
-
-
-
-/*
-data "aws_route53_zone" "selected" {
-  name         = "rs.osecloud.com."
 }
-
-resource "aws_route53_record" "bastian" {
-  zone_id = "${data.aws_route53_zone.selected.zone_id}"
-  name    = "bastion.${data.aws_route53_zone.selected.name}"
-  type    = "A"
-  ttl     = "300"
-  records = ["${aws_instance.bastion.public_ip}"]
-}
-*/
