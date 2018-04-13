@@ -14,7 +14,7 @@ resource "aws_instance" "nfs" {
   provisioner "remote-exec" {
     inline = [
       "sudo /usr/sbin/subscription-manager register --username ${var.rhn_username} --password ${var.rhn_password}",
-      "sudo /usr/sbin/subscription-manager attach --pool=8a85f98460bfb0470160c2ff250f3e66",
+      "sudo /usr/sbin/subscription-manager attach --pool=${var.rhn_pool}",
       "sudo /usr/sbin/subscription-manager repos --disable=\"*\"",
       "sudo /usr/sbin/subscription-manager repos --enable=\"rhel-7-server-rpms\" --enable=\"rhel-7-server-extras-rpms\" --enable=\"rhel-7-server-ose-3.9-rpms\" --enable=\"rhel-7-fast-datapath-rpms\" --enable=\"rhel-7-server-ansible-2.4-rpms\"",
       "sudo /usr/bin/yum install -y wget git net-tools bind-utils iptables-services bridge-utils bash-completion kexec-tools sos psacct atomic-openshift-utils",

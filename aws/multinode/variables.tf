@@ -20,6 +20,9 @@ variable "rhn_username" {
 variable "rhn_password" {
   description = "RHN password"
 }
+variable "rhn_pool" {
+  description = "Pool ID to attach to"
+}
 
 variable "domain" {
   description = "Route53 hosted domain"

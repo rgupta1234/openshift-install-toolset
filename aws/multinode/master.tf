@@ -1,18 +1,25 @@
-resource "aws_instance" "nodes" {
-  count = "${var.node["count"]}"
-  ami           = "ami-0b1e356e"
-  instance_type = "m4.2xlarge"
+resource "aws_instance" "master" {
+  count = "${var.master["count"]}"
+  ami           = "${var.ami}"
+  instance_type = "${var.master["instance_type"]}"
   key_name = "${var.key_name}"
 
   root_block_device {
-    volume_size = "30"
+    volume_size = "${var.master["root_volume_size"]}"
     volume_type = "gp2"
     delete_on_termination = true
   }
 
   ebs_block_device {
     device_name = "/dev/sdb"
-    volume_size = 50
+    volume_size = "${var.master["docker_volume_size"]}"
+    volume_type = "gp2"
+    delete_on_termination = true
+  }
+
+  ebs_block_device {
+    device_name = "/dev/sdc"
+    volume_size = "${var.master["nfs_volume_size"]}"
     volume_type = "gp2"
     delete_on_termination = true
   }
@@ -20,7 +27,7 @@ resource "aws_instance" "nodes" {
   provisioner "remote-exec" {
     inline = [
       "sudo /usr/sbin/subscription-manager register --username ${var.rhn_username} --password ${var.rhn_password}",
-      "sudo /usr/sbin/subscription-manager attach --pool=8a85f98460bfb0470160c2ff250f3e66",
+      "sudo /usr/sbin/subscription-manager attach --pool=${var.rhn_pool}",
       "sudo /usr/sbin/subscription-manager repos --disable=\"*\"",
       "sudo /usr/sbin/subscription-manager repos --enable=\"rhel-7-server-rpms\" --enable=\"rhel-7-server-extras-rpms\" --enable=\"rhel-7-server-ose-3.9-rpms\" --enable=\"rhel-7-fast-datapath-rpms\" --enable=\"rhel-7-server-ansible-2.4-rpms\"",
       "sudo /usr/bin/yum install -y wget git net-tools bind-utils iptables-services bridge-utils bash-completion kexec-tools sos psacct atomic-openshift-utils",
@@ -33,7 +40,6 @@ resource "aws_instance" "nodes" {
   }
 
   tags {
-    Name = "workshop-node-${count.index + 1 }"
+    Name = "workshop-master-${count.index + 1}"
   }
 }
-
