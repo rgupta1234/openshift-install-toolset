@@ -19,7 +19,7 @@ openshift_deployment_type=openshift-enterprise
 openshift_clock_enabled=true
 
 # Network/DNS Related
-openshift_master_default_subdomain=cns-test.demo.osecloud.com
+openshift_master_default_subdomain=apps.cns-test.demo.osecloud.com
 osm_cluster_network_cidr=10.1.0.0/16
 osm_host_subnet_length=8
 openshift_portal_net=172.30.0.0/16
@@ -103,8 +103,8 @@ os_sdn_network_plugin_name='redhat/openshift-ovs-multitenant'
 #openshift_management_storage_class=preconfigured
 
 # If using Route53 or you're pointed to the master with a "vanity" name
-openshift_master_public_api_url=https://ocp.cloud.chx:8443
-openshift_master_public_console_url=https://ocp.cloud.chx:8443/console
+openshift_master_public_api_url=https://cns-test.demo.osecloud.com:8443
+openshift_master_public_console_url=https://cns-test.demo.osecloud.com:8443/console
 openshift_master_api_port=8443
 openshift_master_console_port=8443
 
@@ -148,4 +148,5 @@ openshift_master_htpasswd_users={'developer': '$apr1$q2fVVf46$85HP/4JHGYeFBKAKPB
 172.31.40.202 glusterfs_ip=172.31.40.202 glusterfs_zone=1 glusterfs_devices='[ "/dev/xvdc" ]'
 172.31.35.4 glusterfs_ip=172.31.35.4 glusterfs_zone=2 glusterfs_devices='[ "/dev/xvdc" ]'
 172.31.35.125 glusterfs_ip=172.31.35.125 glusterfs_zone=3 glusterfs_devices='[ "/dev/xvdc" ]'
+##
 ##
