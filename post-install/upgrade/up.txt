@@ -1,0 +1,6 @@
+1) `ansible all -m shell -a "yum -y update atomic-openshift-utils"`
+2) `ansible-playbook --fork=12 /usr/share/ansible/openshift-ansible/playbooks/byo/openshift-cluster/upgrades/v3_9/upgrade.yml`
+3) `ansible-playbook  /usr/share/ansible/openshift-ansible/playbooks/openshift-logging/config.yml  -e openshift_logging_image_version=v3.9.27`
+4) `ansible-playbook /usr/share/ansible/openshift-ansible/playbooks/openshift-metrics/config.yml -e openshift_metrics_image_version=v3.9.27`
+5) `ansible all -m shell -a "yum -y update"`
+6) `systemctl reboot` <~ on each server as you wish (edited)

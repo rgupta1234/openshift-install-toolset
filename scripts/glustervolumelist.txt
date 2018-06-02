@@ -1,0 +1,275 @@
+# for i in $(gluster volume list); do gluster volume info $i; done
+
+Volume Name: glusterfs-registry-volume
+Type: Replicate
+Volume ID: 037a519c-a16c-42d4-8bc3-8ceaddb06de6
+Status: Started
+Snapshot Count: 0
+Number of Bricks: 1 x 3 = 3
+Transport-type: tcp
+Bricks:
+Brick1: 192.168.0.43:/var/lib/heketi/mounts/vg_e8cde096431c845b039470fc3e74818c/brick_29cb45dfe37455b7c1ea5951946b9a65/brick
+Brick2: 192.168.0.8:/var/lib/heketi/mounts/vg_4bdf685e26be4aa247d58f6fbcb957f0/brick_2000f143ca01e65b4ed726e74a0c1571/brick
+Brick3: 192.168.0.42:/var/lib/heketi/mounts/vg_f3794059eca1a2eac99c12b23563e1a6/brick_7c8426c1255dfc6c4e6ac5a77b3b8e1b/brick
+Options Reconfigured:
+transport.address-family: inet
+nfs.disable: on
+cluster.brick-multiplex: on
+
+Volume Name: heketidbstorage
+Type: Replicate
+Volume ID: c3754260-d7d5-432e-9bab-0b9b48b161b5
+Status: Started
+Snapshot Count: 0
+Number of Bricks: 1 x 3 = 3
+Transport-type: tcp
+Bricks:
+Brick1: 192.168.0.43:/var/lib/heketi/mounts/vg_e8cde096431c845b039470fc3e74818c/brick_31f541fe531c5e357f7dd19fddfe2733/brick
+Brick2: 192.168.0.8:/var/lib/heketi/mounts/vg_4bdf685e26be4aa247d58f6fbcb957f0/brick_54b9ce6aabb5dae895e832e69b8b65da/brick
+Brick3: 192.168.0.42:/var/lib/heketi/mounts/vg_f3794059eca1a2eac99c12b23563e1a6/brick_c36a8ac034f0ecefa056f7d0a02840f6/brick
+Options Reconfigured:
+transport.address-family: inet
+nfs.disable: on
+cluster.brick-multiplex: on
+
+Volume Name: vol_038ee38ed94f7a791ec664cecaa03243
+Type: Replicate
+Volume ID: b4f5876d-29de-4e93-ae69-a1306c9e1ec5
+Status: Stopped
+Snapshot Count: 0
+Number of Bricks: 1 x 3 = 3
+Transport-type: tcp
+Bricks:
+Brick1: 192.168.0.43:/var/lib/heketi/mounts/vg_e8cde096431c845b039470fc3e74818c/brick_99c739710de1b7a4feae13f717476bd1/brick
+Brick2: 192.168.0.8:/var/lib/heketi/mounts/vg_4bdf685e26be4aa247d58f6fbcb957f0/brick_34eac9cfc4e40271c5fe428282468fb6/brick
+Brick3: 192.168.0.42:/var/lib/heketi/mounts/vg_f3794059eca1a2eac99c12b23563e1a6/brick_b285724257b9c18bf4255362d1817936/brick
+Options Reconfigured:
+nfs.disable: on
+transport.address-family: inet
+cluster.brick-multiplex: on
+
+Volume Name: vol_069ad104bd6949e799b396cd93936763
+Type: Replicate
+Volume ID: 84d8d11f-3730-41ba-a17e-5fb028c62e8e
+Status: Started
+Snapshot Count: 0
+Number of Bricks: 1 x 3 = 3
+Transport-type: tcp
+Bricks:
+Brick1: 192.168.0.43:/var/lib/heketi/mounts/vg_e8cde096431c845b039470fc3e74818c/brick_fa0567a4bcafb0e9d87cc56c6fe4db18/brick
+Brick2: 192.168.0.8:/var/lib/heketi/mounts/vg_4bdf685e26be4aa247d58f6fbcb957f0/brick_51573ba9cfdcaf66c2472b7165a00a11/brick
+Brick3: 192.168.0.42:/var/lib/heketi/mounts/vg_f3794059eca1a2eac99c12b23563e1a6/brick_6670958dfcc401952993badc1e109107/brick
+Options Reconfigured:
+nfs.disable: on
+transport.address-family: inet
+cluster.brick-multiplex: on
+
+Volume Name: vol_29d57f2bf4dddc75877cbd7f75aac188
+Type: Replicate
+Volume ID: 32708c10-b568-4f79-9b2a-bbf3a93ab61a
+Status: Stopped
+Snapshot Count: 0
+Number of Bricks: 1 x 3 = 3
+Transport-type: tcp
+Bricks:
+Brick1: 192.168.0.43:/var/lib/heketi/mounts/vg_e8cde096431c845b039470fc3e74818c/brick_a6adcc4a76c9d041494511e870cf78da/brick
+Brick2: 192.168.0.8:/var/lib/heketi/mounts/vg_4bdf685e26be4aa247d58f6fbcb957f0/brick_2bc8052697bc72c955749baf46580698/brick
+Brick3: 192.168.0.42:/var/lib/heketi/mounts/vg_f3794059eca1a2eac99c12b23563e1a6/brick_f879377c804e945e51b970ebbd2eed1c/brick
+Options Reconfigured:
+nfs.disable: on
+transport.address-family: inet
+cluster.brick-multiplex: on
+
+Volume Name: vol_2da04f1ccbb71067687c8f866f6f1ea8
+Type: Replicate
+Volume ID: 5ae7e4fc-caf6-4c52-88cf-1799e18fff4d
+Status: Started
+Snapshot Count: 0
+Number of Bricks: 1 x 3 = 3
+Transport-type: tcp
+Bricks:
+Brick1: 192.168.0.43:/var/lib/heketi/mounts/vg_e8cde096431c845b039470fc3e74818c/brick_c12fbedd99494e78ec8b51ebf82f0c64/brick
+Brick2: 192.168.0.8:/var/lib/heketi/mounts/vg_4bdf685e26be4aa247d58f6fbcb957f0/brick_f0757f5f6436c30f0d1421e103abe43d/brick
+Brick3: 192.168.0.42:/var/lib/heketi/mounts/vg_f3794059eca1a2eac99c12b23563e1a6/brick_7749016921795cbbaa26f1d6f269bcdd/brick
+Options Reconfigured:
+nfs.disable: on
+transport.address-family: inet
+cluster.brick-multiplex: on
+
+Volume Name: vol_6f1e8f500d845a4870f4c432fc125d7e
+Type: Replicate
+Volume ID: 0b2d1d30-6d99-4237-b7e4-e25fa9903eb4
+Status: Stopped
+Snapshot Count: 0
+Number of Bricks: 1 x 3 = 3
+Transport-type: tcp
+Bricks:
+Brick1: 192.168.0.8:/var/lib/heketi/mounts/vg_4bdf685e26be4aa247d58f6fbcb957f0/brick_786fa26bc424e1f5a41cd238780321a5/brick
+Brick2: 192.168.0.42:/var/lib/heketi/mounts/vg_f3794059eca1a2eac99c12b23563e1a6/brick_48bdda39bab2974f23fb8a8acccd096b/brick
+Brick3: 192.168.0.43:/var/lib/heketi/mounts/vg_e8cde096431c845b039470fc3e74818c/brick_557ffc3f6ac789d0700efa65e7b28c40/brick
+Options Reconfigured:
+nfs.disable: on
+transport.address-family: inet
+cluster.brick-multiplex: on
+
+Volume Name: vol_701a05fc5f64ca7a8ddb83c2d51bca6d
+Type: Replicate
+Volume ID: 0982c491-dd8a-4ba9-bf00-ca0d15e7d15b
+Status: Started
+Snapshot Count: 0
+Number of Bricks: 1 x 3 = 3
+Transport-type: tcp
+Bricks:
+Brick1: 192.168.0.8:/var/lib/heketi/mounts/vg_4bdf685e26be4aa247d58f6fbcb957f0/brick_a7791b11cfb945709014c7f3a3b8c24a/brick
+Brick2: 192.168.0.42:/var/lib/heketi/mounts/vg_f3794059eca1a2eac99c12b23563e1a6/brick_fa759605a43acb7a1c46fd56423e3324/brick
+Brick3: 192.168.0.43:/var/lib/heketi/mounts/vg_e8cde096431c845b039470fc3e74818c/brick_a5b5e1c6c416f444d88a995fbd4fe924/brick
+Options Reconfigured:
+nfs.disable: on
+transport.address-family: inet
+cluster.brick-multiplex: on
+
+Volume Name: vol_72c7e29f8b942c0d5ad9f7cf03a50190
+Type: Replicate
+Volume ID: 285f3ea7-1419-4235-98a2-894386bac601
+Status: Started
+Snapshot Count: 0
+Number of Bricks: 1 x 3 = 3
+Transport-type: tcp
+Bricks:
+Brick1: 192.168.0.42:/var/lib/heketi/mounts/vg_f3794059eca1a2eac99c12b23563e1a6/brick_ad0d8a3975bce77fafd829dc858a578b/brick
+Brick2: 192.168.0.43:/var/lib/heketi/mounts/vg_e8cde096431c845b039470fc3e74818c/brick_268e1f6b972671dd247ec6c7354d804f/brick
+Brick3: 192.168.0.8:/var/lib/heketi/mounts/vg_4bdf685e26be4aa247d58f6fbcb957f0/brick_452a1207171028a31c184865464c8491/brick
+Options Reconfigured:
+server.allow-insecure: on
+user.cifs: off
+features.shard-block-size: 64MB
+features.shard: on
+cluster.shd-wait-qlength: 10000
+cluster.shd-max-threads: 8
+cluster.locking-scheme: granular
+cluster.data-self-heal-algorithm: full
+cluster.quorum-type: auto
+cluster.eager-lock: disable
+network.remote-dio: disable
+performance.strict-o-direct: on
+performance.readdir-ahead: off
+performance.open-behind: off
+performance.stat-prefetch: off
+performance.io-cache: off
+performance.read-ahead: off
+performance.quick-read: off
+transport.address-family: inet
+nfs.disable: on
+cluster.brick-multiplex: on
+
+Volume Name: vol_89ea0a5b883eca0f692ad3c132c1575c
+Type: Replicate
+Volume ID: 5efa9cfb-0b8c-484a-95f8-096b9d74d28b
+Status: Started
+Snapshot Count: 0
+Number of Bricks: 1 x 3 = 3
+Transport-type: tcp
+Bricks:
+Brick1: 192.168.0.43:/var/lib/heketi/mounts/vg_e8cde096431c845b039470fc3e74818c/brick_4122f50cfd55cf98fd6e8a869daa8e8e/brick
+Brick2: 192.168.0.8:/var/lib/heketi/mounts/vg_4bdf685e26be4aa247d58f6fbcb957f0/brick_0898b315f3182acb1cc27acbabdfc691/brick
+Brick3: 192.168.0.42:/var/lib/heketi/mounts/vg_f3794059eca1a2eac99c12b23563e1a6/brick_702aafa310ef721fd34a8424cc28b301/brick
+Options Reconfigured:
+transport.address-family: inet
+nfs.disable: on
+cluster.brick-multiplex: on
+
+Volume Name: vol_8b1978e0724b54493167d392deeaed7f
+Type: Replicate
+Volume ID: fa55e869-db48-4866-818d-f413c60dd3c5
+Status: Started
+Snapshot Count: 0
+Number of Bricks: 1 x 3 = 3
+Transport-type: tcp
+Bricks:
+Brick1: 192.168.0.43:/var/lib/heketi/mounts/vg_e8cde096431c845b039470fc3e74818c/brick_233b41ee2fc3af783d1e30b0ae70e592/brick
+Brick2: 192.168.0.8:/var/lib/heketi/mounts/vg_4bdf685e26be4aa247d58f6fbcb957f0/brick_319786567aec98e656a1aced2bbcdaa7/brick
+Brick3: 192.168.0.42:/var/lib/heketi/mounts/vg_f3794059eca1a2eac99c12b23563e1a6/brick_346808b18f5cd7627b7a0186843ee945/brick
+Options Reconfigured:
+transport.address-family: inet
+nfs.disable: on
+cluster.brick-multiplex: on
+
+Volume Name: vol_a1c9e7223562e2537409494f2c62f63c
+Type: Replicate
+Volume ID: 2662ca07-3ef7-445f-92f8-74435add4c41
+Status: Stopped
+Snapshot Count: 0
+Number of Bricks: 1 x 3 = 3
+Transport-type: tcp
+Bricks:
+Brick1: 192.168.0.43:/var/lib/heketi/mounts/vg_e8cde096431c845b039470fc3e74818c/brick_e3edb2b97b431334c23b0b90f80abe37/brick
+Brick2: 192.168.0.8:/var/lib/heketi/mounts/vg_4bdf685e26be4aa247d58f6fbcb957f0/brick_447884115f2845df79ff3d1dfa34e502/brick
+Brick3: 192.168.0.42:/var/lib/heketi/mounts/vg_f3794059eca1a2eac99c12b23563e1a6/brick_b1d576e35504c8118c3508b0fbfd30cd/brick
+Options Reconfigured:
+nfs.disable: on
+transport.address-family: inet
+cluster.brick-multiplex: on
+
+Volume Name: vol_ae9f0516efa0a87b573733090ed960f4
+Type: Replicate
+Volume ID: 38d7084a-bb2e-498e-a224-1b7e41edd1b1
+Status: Started
+Snapshot Count: 0
+Number of Bricks: 1 x 3 = 3
+Transport-type: tcp
+Bricks:
+Brick1: 192.168.0.42:/var/lib/heketi/mounts/vg_f3794059eca1a2eac99c12b23563e1a6/brick_c0515ecaa9cd1bc10a75d78afc2bce86/brick
+Brick2: 192.168.0.43:/var/lib/heketi/mounts/vg_e8cde096431c845b039470fc3e74818c/brick_e9f9267e2e55a0b9a80dc5318c4b4736/brick
+Brick3: 192.168.0.8:/var/lib/heketi/mounts/vg_4bdf685e26be4aa247d58f6fbcb957f0/brick_1ed2560e9f904baddbbfe44ff897ee6e/brick
+Options Reconfigured:
+nfs.disable: on
+transport.address-family: inet
+cluster.brick-multiplex: on
+
+Volume Name: vol_c4cbe30841ae1c9bc875c954c03c5b12
+Type: Replicate
+Volume ID: 8e6395e7-2b00-44d9-bace-24760f0a5a19
+Status: Started
+Snapshot Count: 0
+Number of Bricks: 1 x 3 = 3
+Transport-type: tcp
+Bricks:
+Brick1: 192.168.0.8:/var/lib/heketi/mounts/vg_4bdf685e26be4aa247d58f6fbcb957f0/brick_923f9d0890b575ea83d5f6cc98412e0c/brick
+Brick2: 192.168.0.42:/var/lib/heketi/mounts/vg_f3794059eca1a2eac99c12b23563e1a6/brick_5a2bd055c4cf692ef1036e130bec23cf/brick
+Brick3: 192.168.0.43:/var/lib/heketi/mounts/vg_e8cde096431c845b039470fc3e74818c/brick_1f5c55c980ae5dc62ac52e0181fa7a9e/brick
+Options Reconfigured:
+transport.address-family: inet
+nfs.disable: on
+cluster.brick-multiplex: on
+
+Volume Name: vol_d5c0b0dae36e526d9338c188048e2b34
+Type: Replicate
+Volume ID: 37bb35a9-f355-4b02-9f02-e073a2dc5c31
+Status: Started
+Snapshot Count: 0
+Number of Bricks: 1 x 3 = 3
+Transport-type: tcp
+Bricks:
+Brick1: 192.168.0.8:/var/lib/heketi/mounts/vg_4bdf685e26be4aa247d58f6fbcb957f0/brick_a77858389e3ec5c57f3704b9ed419566/brick
+Brick2: 192.168.0.42:/var/lib/heketi/mounts/vg_f3794059eca1a2eac99c12b23563e1a6/brick_4f448221d5178950bc4570b43fc3e900/brick
+Brick3: 192.168.0.43:/var/lib/heketi/mounts/vg_e8cde096431c845b039470fc3e74818c/brick_7b03fa194273d51bf46029e7c20c5e97/brick
+Options Reconfigured:
+transport.address-family: inet
+nfs.disable: on
+cluster.brick-multiplex: on
+
+Volume Name: vol_d8f55cc21a40eabdc74b07635c33bee5
+Type: Replicate
+Volume ID: 76c56b58-599d-4343-bdb6-35bcfc1e034f
+Status: Started
+Snapshot Count: 0
+Number of Bricks: 1 x 3 = 3
+Transport-type: tcp
+Bricks:
+Brick1: 192.168.0.43:/var/lib/heketi/mounts/vg_e8cde096431c845b039470fc3e74818c/brick_11fcd5fbb43f4fcdd9fcc8712f7b8a21/brick
+Brick2: 192.168.0.8:/var/lib/heketi/mounts/vg_4bdf685e26be4aa247d58f6fbcb957f0/brick_20887b691d78ec65b5df37a46c6c190c/brick
+Brick3: 192.168.0.42:/var/lib/heketi/mounts/vg_f3794059eca1a2eac99c12b23563e1a6/brick_923f7b1f042c4eebb378e562b60ed875/brick
+Options Reconfigured:
+nfs.disable: on
+transport.address-family: inet
+cluster.brick-multiplex: on

@@ -1,0 +1,157 @@
+# Create an OSEv3 group that contains the masters and nodes groups
+[OSEv3:children]
+masters
+nodes
+etcd
+#lb
+glusterfs
+
+# Set variables common for all OSEv3 hosts
+[OSEv3:vars]
+
+# If ansible_ssh_user is not root, ansible_sudo must be set to true
+ansible_ssh_user=ec2-user
+ansible_sudo=true
+ansible_become=yes
+
+# Install Enterprise or Origin; set up ntp
+openshift_deployment_type=openshift-enterprise
+openshift_release_version=3.9.14
+openshift_clock_enabled=true
+openshift_master_audit_config={"enabled": true, "auditFilePath": "/var/log/openpaas-oscp-audit/openpaas-oscp-audit.log", "maximumFileRetentionDays": 14, "maximumFileSizeMegabytes": 500, "maximumRetainedFiles": 5}
+# Network/DNS Related
+openshift_master_default_subdomain=apps.rg.osecloud.com
+osm_cluster_network_cidr=10.1.0.0/16
+osm_host_subnet_length=8
+openshift_portal_net=172.30.0.0/16
+osm_default_node_selector="region=primary"
+openshift_docker_insecure_registries=172.30.0.0/16
+
+
+# Automatically Deploy the router
+openshift_hosted_manage_router=true
+openshift_hosted_router_selector='region=infra'
+
+# CNS Storage
+openshift_storage_glusterfs_namespace=storage
+openshift_storage_glusterfs_storageclass=true
+openshift_storage_glusterfs_storageclass_default=true
+openshift_storage_glusterfs_block_deploy=true
+openshift_storage_glusterfs_block_host_vol_size=100
+openshift_storage_glusterfs_block_storageclass=true
+openshift_storage_glusterfs_block_storageclass_default=false
+openshift_storage_glusterfs_heketi_wipe=True
+openshift_storage_glusterfs_wipe=True
+
+openshift_storageclass_default=false
+
+# Registry Storage
+#
+openshift_hosted_manage_registry=true
+openshift_hosted_registry_storage_kind=glusterfs
+openshift_hosted_registry_storage_volume_name=registry
+openshift_hosted_registry_storage_volume_size=80Gi
+
+# Disble Checks
+openshift_disable_check=disk_availability,memory_availability,package_availability,docker_image_availability,docker_storage,package_version
+
+# Mulititenant functionality (i.e. each project gets it's own "private" network)
+os_sdn_network_plugin_name='redhat/openshift-ovs-subnet'
+
+##################################################################################
+#Uncomment here for logging/metrics install
+# You can run each logging/metrics playbooks
+#/usr/share/ansible/openshift-ansible/playbooks/openshift-logging/config.yml
+#/usr/share/ansible/openshift-ansible/playbooks/openshift-metrics/config.yml
+# Uncomment when setting up logging/metrics
+# Post install
+# RUN:  oc annotate storageclass glusterfs-storage-block storageclass.kubernetes.io/is-default-class="false"
+# RUN:  oc annotate storageclass glusterfs-storage storageclass.kubernetes.io/is-default-class="true"
+
+#openshift_master_dynamic_provisioning_enabled=true
+
+# This is required otherwise it will fail openshift_sanitize_inventory
+## cloud provider is not configured but dynamic is set
+# dynamic_volumes_check=False
+
+# Metrics and Logging leave commented out; run as post deployment
+##
+# Logging
+openshift_logging_install_logging=true
+openshift_logging_es_pvc_dynamic=true
+openshift_logging_es_pvc_size=80Gi
+openshift_logging_es_pvc_storage_class_name=glusterfs-storage-block
+openshift_logging_curator_nodeselector={'region':'infra'}
+openshift_logging_es_nodeselector={'region':'infra'}
+openshift_logging_kibana_nodeselector={'region':'infra'}
+openshift_logging_es_memory_limit=4G
+##
+# Metrics
+openshift_metrics_install_metrics=true
+openshift_metrics_cassandra_storage_type=dynamic
+openshift_metrics_cassandra_pvc_size=80Gi
+openshift_metrics_hawkular_nodeselector={'region':'infra'}
+openshift_metrics_heapster_nodeselector={'region':'infra'}
+openshift_metrics_cassandra_nodeselector={'region':'infra'}
+##
+# Prometheus
+#openshift_hosted_prometheus_deploy=true
+#openshift_prometheus_namespace=openshift-metrics
+#openshift_prometheus_node_selector={"region":"infra"}
+#openshift_prometheus_storage_kind=dynamic
+##################################################################################
+
+# Cloudforms - optional
+#openshift_management_install_management=true
+#openshift_management_install_beta=true
+#openshift_management_app_template=cfme-template
+#openshift_management_project=openshift-management
+#openshift_management_storage_class=preconfigured
+
+# If using Route53 or you're pointed to the master with a "vanity" name
+openshift_master_public_api_url=https://rg.osecloud.com:8443
+openshift_master_public_console_url=https://rg.osecloud.com:8443/console
+openshift_master_api_port=8443
+openshift_master_console_port=8443
+
+# Native high availbility cluster method with optional load balancer.
+# If no lb group is defined installer assumes that a load balancer has
+# been preconfigured. For installation the value of
+# openshift_master_cluster_hostname must resolve to the load balancer
+# or to one or all of the masters defined in the inventory if no load
+# balancer is present.
+openshift_master_cluster_method=native
+openshift_master_cluster_hostname=rg.osecloud.com
+openshift_master_cluster_public_hostname=rg.osecloud.com
+
+# The following enabled htpasswd authentication
+openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/openshift-passwd'}]
+openshift_master_htpasswd_users={'developer': '$apr1$q2fVVf46$85HP/4JHGYeFBKAKPBblo0'}
+
+# OpenShift host groups
+
+# host group for etcd
+[etcd]
+ip-172-31-44-228.us-east-2.compute.internal
+# host group for loadbalancers
+#[lb]
+#ocp.cloud.chx
+
+# host group for masters - set scedulable to "true" for the web-console pod
+[masters]
+ip-172-31-44-228.us-east-2.compute.internal openshift_ip=172.31.44.228
+
+# host group for nodes, includes region info
+[nodes]
+ip-172-31-44-228.us-east-2.compute.internal openshift_public_ip=52.14.219.177 openshift_ip=172.31.44.228 openshift_node_labels="{'region': 'infra', 'zone': 'm1'}"
+ip-172-31-39-74.us-east-2.compute.internal openshift_ip=172.31.39.74 openshift_node_labels="{'region': 'primary', 'zone': 'a1'}"
+ip-172-31-36-6.us-east-2.compute.internal openshift_ip=172.31.36.6 openshift_node_labels="{'region': 'primary', 'zone': 'a2'}"
+ip-172-31-45-66.us-east-2.compute.internal openshift_ip=172.31.45.66 openshift_node_labels="{'region': 'primary', 'zone': 'a3'}"
+
+[glusterfs]
+# "standalone" glusterfs nodes STILL need to be in the "[nodes]" section
+ip-172-31-39-74.us-east-2.compute.internal glusterfs_ip=172.31.39.74 glusterfs_zone=1 glusterfs_devices='[ "/dev/xvdc" ]'
+ip-172-31-36-6.us-east-2.compute.internal glusterfs_ip=172.31.36.6 glusterfs_zone=2 glusterfs_devices='[ "/dev/xvdc" ]'
+ip-172-31-45-66.us-east-2.compute.internal glusterfs_ip=172.31.45.66 glusterfs_zone=3 glusterfs_devices='[ "/dev/xvdc" ]'
+##
+##
